@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load l10n %}
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			{% trans "Contact information" %}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>{% trans "E-Mail" %}</dt>
+			<dd>{{ email }}</dd>
+			<dt>{% trans "Telephone" %}</dt>
+			<dd>{{ telephone }}</dd>
+		</dl>
+	</div>
+</div>

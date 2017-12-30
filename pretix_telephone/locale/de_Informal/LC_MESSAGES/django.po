@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-30 09:26+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Felix Rindt\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pretix_telephone/__init__.py:10
+msgid "Pretix Telephone Contact Question"
+msgstr "Pretix Telefon Kontaktfrage"
+
+#: pretix_telephone/__init__.py:12
+msgid "This plugin adds a contact question asking for the telephone number."
+msgstr "Dieses Plugin fügt eine Kontaktfrage hinzu, die nach der Telefonnummer fragt."
+
+#: pretix_telephone/signals.py:12 pretix_telephone/signals.py:14
+#: pretix_telephone/templates/pretix_telephone/orderdetails.html:14
+msgid "Telephone"
+msgstr "Telefon"
+
+#: pretix_telephone/templates/pretix_telephone/orderdetails.html:7
+msgid "Contact information"
+msgstr "Kontaktinformationen"
+
+#: pretix_telephone/templates/pretix_telephone/orderdetails.html:12
+msgid "E-Mail"
+msgstr "E-Mail"

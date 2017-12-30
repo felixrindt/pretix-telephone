@@ -1,0 +1,3 @@
+recursive-include pretix_telephone/static *
+recursive-include pretix_telephone/templates *
+recursive-include pretix_telephone/locale *
