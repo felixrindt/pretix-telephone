@@ -1,18 +1,24 @@
 import json
 from django.dispatch import receiver
+from django.urls import resolve, reverse
+from i18nfield.strings import LazyI18nString
+
 from pretix.presale.signals import contact_form_fields
-from pretix.control.signals import order_info
+from pretix.control.signals import order_info, nav_event_settings
 from django import forms
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 
+
 @receiver(contact_form_fields, dispatch_uid="pretix_telephone_question")
 def add_telephone_question(sender, **kwargs):
     return {'telephone': forms.CharField(
-            label = _('Telephone'),
-            required = False,
-            widget = forms.TextInput(attrs={'placeholder': _('Telephone')}),
+            label=_('Phone number'),
+            required=sender.settings.telephone_field_required,
+            help_text=sender.settings.get('telephone_field_help_text', as_type=LazyI18nString),
+            widget=forms.TextInput(attrs={'placeholder': _('Phone number')}),
         )}
+
 
 @receiver(order_info, dispatch_uid="pretix_telephone_orderinfo")
 def add_telephone_order_info(sender, order=None, **kwargs):
@@ -22,3 +28,16 @@ def add_telephone_order_info(sender, order=None, **kwargs):
     ctx = json.loads(order.meta_info)['contact_form_data']
     return template.render(ctx)
 
+
+@receiver(nav_event_settings, dispatch_uid='pretix_telephone_settings')
+def add_settings_nav_tab(sender, request, **kwargs):
+    url = resolve(request.path_info)
+    return [{
+        'label': _('Phone number field'),
+        'icon': 'phone',
+        'url': reverse('plugins:pretix_telephone:settings', kwargs={
+            'event': request.event.slug,
+            'organizer': request.organizer.slug,
+        }),
+        'active': url.namespace == 'plugins:pretix_telephone',
+    }]
