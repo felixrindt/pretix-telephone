@@ -26,12 +26,13 @@ cmdclass = {
 setup(
     name='pretix-telephone',
     version='1.0.0',
-    description='This plugin adds a contact question asking for the telephone number.',
+    description='This pretix plugin adds a contact question asking for the telephone number.',
     long_description=long_description,
     url='https://github.com/felixrindt/pretix-telephone',
     author='Felix Rindt',
     author_email='felix@rindt.me',
     license='Apache Software License',
+    keywords='pretix plugin telephone',
 
     install_requires=[],
     packages=find_packages(exclude=['tests', 'tests.*']),
