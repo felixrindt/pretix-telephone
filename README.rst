@@ -1,7 +1,9 @@
 Pretix Telephone Contact Question
-==========================
+=================================
 
-This is a plugin for `pretix`_. It adds a Question asking for the telephone number to the contact information form. The user is not required to answer. The information can be seen under a contact information panel in the order detail view.
+This is a plugin for `pretix`_. It adds a Question asking for the telephone number to the contact information form. The information can be seen under a contact information panel in the order detail view. The helptext and wether the question is required can be changed in the backend.
+
+You can install the plugin manually or use ``pip`` to install ``pretix-telephone``.
 
 Development setup
 -----------------
