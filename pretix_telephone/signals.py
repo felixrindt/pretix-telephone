@@ -1,13 +1,15 @@
 import json
+
+from django import forms
 from django.dispatch import receiver
 from django.urls import resolve, reverse
-from i18nfield.strings import LazyI18nString
-
-from pretix.presale.signals import contact_form_fields
-from pretix.control.signals import order_info, nav_event_settings
-from django import forms
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
+from i18nfield.strings import LazyI18nString
+
+from pretix.base.signals import register_data_exporters
+from pretix.control.signals import order_info, nav_event_settings
+from pretix.presale.signals import contact_form_fields
 
 
 @receiver(contact_form_fields, dispatch_uid="pretix_telephone_question")
@@ -18,6 +20,12 @@ def add_telephone_question(sender, **kwargs):
             help_text=sender.settings.get('telephone_field_help_text', as_type=LazyI18nString),
             widget=forms.TextInput(attrs={'placeholder': _('Phone number')}),
         )}
+
+
+@receiver(register_data_exporters, dispatch_uid="pretix_telephone_exporter")
+def register_telephone_exporter(sender, **kwargs):
+    from .exporter import TelephoneExporter
+    return TelephoneExporter
 
 
 @receiver(order_info, dispatch_uid="pretix_telephone_orderinfo")
