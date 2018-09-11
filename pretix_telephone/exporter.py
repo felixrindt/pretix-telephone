@@ -1,13 +1,13 @@
 import io
 import json
 from collections import OrderedDict
-from defusedcsv import csv
 
+from defusedcsv import csv
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-
 from pretix.base.exporter import BaseExporter
 from pretix.base.models import Order
+
 
 class TelephoneExporter(BaseExporter):
     identifier = 'telephonenumbers'
@@ -57,4 +57,3 @@ class TelephoneExporter(BaseExporter):
                 )),
             ]
         )
-

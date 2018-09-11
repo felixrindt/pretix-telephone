@@ -2,13 +2,12 @@ import json
 
 from django import forms
 from django.dispatch import receiver
-from django.urls import resolve, reverse
 from django.template.loader import get_template
+from django.urls import resolve, reverse
 from django.utils.translation import ugettext_lazy as _
 from i18nfield.strings import LazyI18nString
-
 from pretix.base.signals import register_data_exporters
-from pretix.control.signals import order_info, nav_event_settings
+from pretix.control.signals import nav_event_settings, order_info
 from pretix.presale.signals import contact_form_fields
 
 
