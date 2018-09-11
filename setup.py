@@ -25,7 +25,7 @@ cmdclass = {
 
 setup(
     name='pretix-telephone',
-    version='2.0.0',
+    version='2.0.1',
     description='This pretix plugin adds a contact question asking for the telephone number.',
     long_description=long_description,
     url='https://github.com/felixrindt/pretix-telephone',

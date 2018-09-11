@@ -11,7 +11,7 @@ class PluginApp(AppConfig):
         author = 'Felix Rindt'
         description = ugettext_lazy('This plugin adds a contact question asking for the telephone number.')
         visible = True
-        version = '2.0.0'
+        version = '2.0.1'
 
     def ready(self):
         from . import signals  # NOQA

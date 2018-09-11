@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-18 20:38+0200\n"
+"POT-Creation-Date: 2018-09-11 20:23+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Felix Rindt\n"
 "Language-Team: \n"
@@ -21,11 +21,37 @@ msgid "This plugin adds a contact question asking for the telephone number."
 msgstr ""
 "Dieses Plugin fügt eine Kontaktfrage hinzu, die nach der Telefonnummer fragt."
 
-#: pretix_telephone/signals.py:16 pretix_telephone/signals.py:19
+#: pretix_telephone/exporter.py:14
+#| msgid "Require phone number"
+msgid "Telephone numbers (CSV)"
+msgstr "Telefonnummern (CSV)"
+
+#: pretix_telephone/exporter.py:23
+msgid "Order code"
+msgstr "Bestellnummer"
+
+#: pretix_telephone/exporter.py:23
+msgid "Name"
+msgstr "Name"
+
+#: pretix_telephone/exporter.py:23
+#: pretix_telephone/templates/pretix_telephone/orderdetails.html:14
+msgid "Telephone"
+msgstr "Telefon"
+
+#: pretix_telephone/exporter.py:47
+msgid "Filter by status"
+msgstr "Nach Status filtern"
+
+#: pretix_telephone/exporter.py:55
+msgid "CSV dialect"
+msgstr "CSV Dialekt"
+
+#: pretix_telephone/signals.py:17 pretix_telephone/signals.py:20
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-#: pretix_telephone/signals.py:36
+#: pretix_telephone/signals.py:43
 msgid "Phone number field"
 msgstr "Telefonnummern-Feld"
 
@@ -37,10 +63,6 @@ msgstr "Kontaktinformationen"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: pretix_telephone/templates/pretix_telephone/orderdetails.html:14
-msgid "Telephone"
-msgstr "Telefon"
-
 #: pretix_telephone/templates/pretix_telephone/settings.html:5
 msgid "Telephone field"
 msgstr "Telefon-Feld"
@@ -49,28 +71,28 @@ msgstr "Telefon-Feld"
 msgid "Save"
 msgstr "Speichern"
 
-#: pretix_telephone/views.py:13
+#: pretix_telephone/views.py:14
 msgid "Require phone number"
 msgstr "Telefonnummer erforderlich"
 
-#: pretix_telephone/views.py:14
+#: pretix_telephone/views.py:15
 msgid "If this is not checked, entering a phone number is optional."
 msgstr ""
 "Wenn diese Option nicht aktiv ist, ist die Eingabe einer Telefonnummer "
 "freiwillig."
 
-#: pretix_telephone/views.py:18
+#: pretix_telephone/views.py:19
 msgid "Help text"
 msgstr "Hilfetext"
 
-#: pretix_telephone/views.py:19
+#: pretix_telephone/views.py:20
 msgid ""
 "This will be shown below the telephone field. You could use it to indicate "
 "why you need the number or what you will use it for."
 msgstr ""
-"Dieser Text wird unter dem Formularfeld für die Telefonnummer angezeigt. Du "
-"kannst hier z.B. erklären warum du die Nummer brauchst oder wofür du die "
-"Nummer nutzt."
+"Dieser Text wird unter dem Formularfeld für die Telefonnummer angezeigt. Sie "
+"können hier z.B. erklären warum Sie die Nummer brauchen oder wofür Sie die "
+"Nummer nutzen."
 
 #~ msgid "Pretix Telephone Contact Question"
 #~ msgstr "Pretix Telefon Kontaktfrage"
