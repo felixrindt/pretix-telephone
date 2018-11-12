@@ -6,7 +6,7 @@ from django.template.loader import get_template
 from django.urls import resolve, reverse
 from django.utils.translation import ugettext_lazy as _
 from i18nfield.strings import LazyI18nString
-from pretix.base.signals import register_data_exporters
+from pretix.base.signals import register_data_exporters, layout_text_variables
 from pretix.control.signals import nav_event_settings, order_info
 from pretix.presale.signals import contact_form_fields
 
@@ -34,6 +34,19 @@ def add_telephone_order_info(sender, order=None, **kwargs):
     template = get_template('pretix_telephone/orderdetails.html')
     ctx = json.loads(order.meta_info).get('contact_form_data', {})
     return template.render(ctx)
+
+
+@receiver(layout_text_variables, dispatch_uid="pretix_telephone_layouttextvar")
+def add_layout_text_variable(sender, **kwargs):
+    return {
+            "telephone": {
+                "label": _("Phone number"),
+                "editor_sample": "+01 1234 567890",
+                "evaluate": lambda pos, order, event: 
+                    json.loads(order.meta_info).get("contact_form_data", {})
+                                               .get("telephone", ""),
+            }
+    }
 
 
 @receiver(nav_event_settings, dispatch_uid='pretix_telephone_settings')
