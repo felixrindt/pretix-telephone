@@ -32,7 +32,7 @@ def add_telephone_order_info(sender, order=None, **kwargs):
     if not order:
         return
     template = get_template('pretix_telephone/orderdetails.html')
-    ctx = json.loads(order.meta_info)['contact_form_data']
+    ctx = json.loads(order.meta_info).get('contact_form_data', {})
     return template.render(ctx)
 
 
