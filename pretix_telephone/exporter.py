@@ -17,6 +17,8 @@ class TelephoneExporter(BaseExporter):
         output = io.StringIO()
         if form_data.get('dialect', '-') in csv.list_dialects():
             writer = csv.writer(output, dialect=form_data.get('dialect'))
+        elif form_data.get('dialect', '-') == "semicolon":
+            writer = csv.writer(output, dialect='excel', delimiter=';')
         else:
             writer = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC, delimiter=",")
 
@@ -53,7 +55,10 @@ class TelephoneExporter(BaseExporter):
                 ('dialect',
                  forms.ChoiceField(
                     label=_('CSV dialect'),
-                    choices=(('default', 'Default'), ('excel', 'Excel'))
+                    choices=(('default', 'Default'),
+                             ('excel', 'Excel'),
+                             ('semicolon', 'Semicolon'),
+                    )
                 )),
             ]
         )
