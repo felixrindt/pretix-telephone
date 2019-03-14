@@ -43,6 +43,7 @@ def add_layout_text_variable(sender, **kwargs):
                 "label": _("Phone number"),
                 "editor_sample": "+01 1234 567890",
                 "evaluate": lambda pos, order, event: 
+                    "" if not order.meta_info else
                     json.loads(order.meta_info).get("contact_form_data", {})
                                                .get("telephone", ""),
             }
