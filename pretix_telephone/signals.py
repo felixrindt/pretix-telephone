@@ -17,7 +17,7 @@ def add_telephone_question(sender, **kwargs):
             label=_('Phone number'),
             required=sender.settings.telephone_field_required,
             help_text=sender.settings.get('telephone_field_help_text', as_type=LazyI18nString),
-            widget=forms.TextInput(attrs={'placeholder': _('Phone number')}),
+            widget=forms.TextInput(attrs={'placeholder': _('Phone number'), 'type': 'tel'}),
         )}
 
 
