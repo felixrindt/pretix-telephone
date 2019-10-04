@@ -5,24 +5,16 @@ from collections import OrderedDict
 from defusedcsv import csv
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from pretix.base.exporter import BaseExporter
-from pretix.base.models import Order
+from pretix.base.exporter import ListExporter
+from pretix.base.models import Order, InvoiceAddress
 
 
-class TelephoneExporter(BaseExporter):
+class TelephoneExporter(ListExporter):
     identifier = 'telephonenumbers'
-    verbose_name = _('Telephone numbers (CSV)')
+    verbose_name = _('Telephone numbers')
 
-    def render(self, form_data: dict):
-        output = io.StringIO()
-        if form_data.get('dialect', '-') in csv.list_dialects():
-            writer = csv.writer(output, dialect=form_data.get('dialect'))
-        elif form_data.get('dialect', '-') == "semicolon":
-            writer = csv.writer(output, dialect='excel', delimiter=';')
-        else:
-            writer = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC, delimiter=",")
-
-        writer.writerow([_('Order code'), _('Name'), _('Telephone')])
+    def iterate_list(self, form_data):
+        yield [_('Order code'), _('Name'), _('Email'), _('Telephone')]
 
         for order in self.event.orders.filter(status__in=form_data['status']):
             row = [order.code]
@@ -30,18 +22,19 @@ class TelephoneExporter(BaseExporter):
                 row.append(order.invoice_address.name)
             except InvoiceAddress.DoesNotExist:
                 row.append("")
+            row.append(order.email or "")
             contact_form_data = json.loads(order.meta_info)['contact_form_data']
             if 'telephone' in contact_form_data:
                 row.append(contact_form_data['telephone'])
             else:
                 row.append("")
-            writer.writerow(row)
+            yield row
 
         return '{}_telephone.csv'.format(self.event.slug), 'text/csv', output.getvalue().encode("utf-8")
 
 
     @property
-    def export_form_fields(self):
+    def additional_form_fields(self):
         return OrderedDict(
             [
                 ('status',
@@ -52,13 +45,5 @@ class TelephoneExporter(BaseExporter):
                      widget=forms.CheckboxSelectMultiple,
                      required=False
                  )),
-                ('dialect',
-                 forms.ChoiceField(
-                    label=_('CSV dialect'),
-                    choices=(('default', 'Default'),
-                             ('excel', 'Excel'),
-                             ('semicolon', 'Semicolon'),
-                    )
-                )),
             ]
         )
