@@ -30,9 +30,6 @@ class TelephoneExporter(ListExporter):
                 row.append("")
             yield row
 
-        return '{}_telephone.csv'.format(self.event.slug), 'text/csv', output.getvalue().encode("utf-8")
-
-
     @property
     def additional_form_fields(self):
         return OrderedDict(
