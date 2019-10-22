@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 20:23+0200\n"
+"POT-Creation-Date: 2019-10-22 18:01+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Felix Rindt\n"
 "Language-Team: \n"
@@ -22,36 +22,47 @@ msgstr ""
 "Dieses Plugin fügt eine Kontaktfrage hinzu, die nach der Telefonnummer fragt."
 
 #: pretix_telephone/exporter.py:14
-#| msgid "Require phone number"
-msgid "Telephone numbers (CSV)"
+#, fuzzy
+#| msgid "Telephone numbers (CSV)"
+msgid "Telephone numbers"
 msgstr "Telefonnummern (CSV)"
 
-#: pretix_telephone/exporter.py:23
+#: pretix_telephone/exporter.py:17
 msgid "Order code"
 msgstr "Bestellnummer"
 
-#: pretix_telephone/exporter.py:23
+#: pretix_telephone/exporter.py:17
 msgid "Name"
 msgstr "Name"
 
-#: pretix_telephone/exporter.py:23
+#: pretix_telephone/exporter.py:17
+msgid "Email"
+msgstr "Email"
+
+#: pretix_telephone/exporter.py:17
 #: pretix_telephone/templates/pretix_telephone/orderdetails.html:14
 msgid "Telephone"
 msgstr "Telefon"
 
-#: pretix_telephone/exporter.py:47
+#: pretix_telephone/exporter.py:39
 msgid "Filter by status"
 msgstr "Nach Status filtern"
 
-#: pretix_telephone/exporter.py:55
-msgid "CSV dialect"
-msgstr "CSV Dialekt"
+#: pretix_telephone/shredder.py:8
+#| msgid "Telephone numbers (CSV)"
+msgid "Telephone Number"
+msgstr "Telefonnummer"
 
-#: pretix_telephone/signals.py:17 pretix_telephone/signals.py:20
+#: pretix_telephone/shredder.py:10
+msgid "This will remove customer phone numbers attached to orders."
+msgstr "Entfernt Telefonnummern von Bestellungen."
+
+#: pretix_telephone/signals.py:21 pretix_telephone/signals.py:24
+#: pretix_telephone/signals.py:47
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-#: pretix_telephone/signals.py:43
+#: pretix_telephone/signals.py:61
 msgid "Phone number field"
 msgstr "Telefonnummern-Feld"
 
@@ -93,6 +104,9 @@ msgstr ""
 "Dieser Text wird unter dem Formularfeld für die Telefonnummer angezeigt. Sie "
 "können hier z.B. erklären warum Sie die Nummer brauchen oder wofür Sie die "
 "Nummer nutzen."
+
+#~ msgid "CSV dialect"
+#~ msgstr "CSV Dialekt"
 
 #~ msgid "Pretix Telephone Contact Question"
 #~ msgstr "Pretix Telefon Kontaktfrage"
