@@ -26,8 +26,7 @@ class TelephoneShredder(BaseDataShredder):
             meta_info = json.loads(order.meta_info or "{}")
             phone = meta_info.get("contact_form_data", {}).get("telephone", "")
             if phone:
-                phone = '█' * len(phone)
-                meta_info["contact_form_data"]["telephone"] = phone
+                meta_info["contact_form_data"]["telephone"] = '█'
                 order.meta_info = json.dumps(meta_info)
                 order.save(update_fields=['meta_info'])
 
