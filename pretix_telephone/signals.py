@@ -6,9 +6,13 @@ from django.template.loader import get_template
 from django.urls import resolve, reverse
 from django.utils.translation import ugettext_lazy as _
 from i18nfield.strings import LazyI18nString
-from pretix.base.signals import layout_text_variables, register_data_exporters
+from pretix.base.signals import (
+    layout_text_variables, register_data_exporters, register_data_shredders,
+)
 from pretix.control.signals import nav_event_settings, order_info
 from pretix.presale.signals import contact_form_fields
+
+from .shredder import TelephoneShredder
 
 
 @receiver(contact_form_fields, dispatch_uid="pretix_telephone_question")
@@ -62,3 +66,10 @@ def add_settings_nav_tab(sender, request, **kwargs):
         }),
         'active': url.namespace == 'plugins:pretix_telephone',
     }]
+
+
+@receiver(register_data_shredders, dispatch_uid="register_telephone_shredder")
+def register_shredder(sender, **kwargs):
+    return [
+        TelephoneShredder,
+    ]
