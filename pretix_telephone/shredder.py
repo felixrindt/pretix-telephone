@@ -10,7 +10,7 @@ class TelephoneShredder(BaseDataShredder):
     description = _('This will remove customer phone numbers attached to orders.')
 
     def _phone(self, order):
-        return json.loads(order.meta_info) \
+        return json.loads(order.meta_info or "{}") \
                    .get("contact_form_data", {}) \
                    .get("telephone", "")
 
@@ -23,7 +23,7 @@ class TelephoneShredder(BaseDataShredder):
     @transaction.atomic
     def shred_data(self):
         for order in self.event.orders.all():
-            meta_info = json.loads(order.meta_info)
+            meta_info = json.loads(order.meta_info or "{}")
             phone = meta_info.get("contact_form_data", {}).get("telephone", "")
             if phone:
                 phone = '█' * len(phone)
